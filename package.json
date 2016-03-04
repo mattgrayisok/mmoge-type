@@ -1,0 +1,26 @@
+{
+  "name": "mmoge-type",
+  "version": "1.0.0",
+  "description": "An online, multiplayer, real time game engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slice-beans/mmoge-type.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slice-beans/mmoge-type/issues"
+  },
+  "homepage": "https://github.com/slice-beans/mmoge-type#readme",
+  "dependencies": {
+    "ts-loader": "^0.8.1",
+    "ws": "^1.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.14"
+  }
+}
