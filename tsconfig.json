@@ -2,16 +2,29 @@
     "compileOnSave": false,
     "compilerOptions": {
         "module": "commonjs",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "target": "es5",
-        "outDir": "build"
+        "target": "es6",
+        "outDir": "build",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noLib": false,
+        "suppressImplicitAnyIndexErrors": true
     },
-    "exclude": [
-        "node_modules",
-        "typings/browser.d.ts",
-        "typings/browser"
+    "filesGlob": [
+        "./typings/main.d.ts",
+        "./src/MMOG.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    },
+    "files": [
+        "./typings/main.d.ts",
+        "./src/MMOG.ts"
     ]
 }

@@ -1,18 +1,22 @@
-/// <reference path="../node_modules/inversify/type_definitions/inversify-global.d.ts" />
-
 'use strict'
 
-import { Kernel } from "inversify";
+import iocKernel = require("./inversify.config");
 import { ServerEngine } from "./Engines/ServerEngine";
 import { ClientEngine } from "./Engines/ClientEngine";
+import { ClientConfig } from "./Config/ClientConfig";
 
 export class MMOGClient{
 
   public engine : ClientEngine;
 
-  constructor(){
-    let kernel = new Kernel();
-    this.engine = kernel.get<ClientEngine>("ClientEngine");
+  constructor(host:string, port:number){
+
+    //Setup config object
+    let config = iocKernel.get<ClientConfig>("ClientConfig");
+    config.host = host;
+    config.port = port;
+
+    this.engine = iocKernel.get<ClientEngine>("ClientEngine");
   }
 
 }
@@ -22,8 +26,8 @@ export class MMOGServer{
   public engine : ServerEngine;
 
   constructor(){
-    var kernel = new Kernel();
-    this.engine = kernel.get<ClientEngine>("ServerEngine");
+
+    this.engine = iocKernel.get<ClientEngine>("ServerEngine");
   }
 
 }
