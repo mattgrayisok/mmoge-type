@@ -1,29 +1,90 @@
 'use strict';
+import WebSocket = require('ws');
 
-interface Message{
-    name: string,
-    message: string
+interface IClientControlled{
+    gatherInput() : InputState;
+    applyInput(state : InputState) : void;
+    reconcileTowards(serverState:ObjectState, clientState:ObjectState, currentState:ObjectState) : ObjectState;
+
 }
 
-export class UserMessage implements Message{
-    private data: {name:string; message: string};
-    
-    constructor (payload:string){
-        
-        var data = JSON.parse(payload);
-        
-        if(!data.name || !data.message){
-            throw new Error('Missing datums in payload: '+payload);
-        }
-        
-        this.data = data;
-    }
-    
-    get name(): string{
-        return this.data.name;
-    }
-    
-    get message(): string{
-        return this.data.message;
-    }
+interface ISimulatedObject{
+    updateFromState(state : ObjectState) : void;
+    interpolateStates(state1 : ObjectState, state2 : ObjectState, delta : number) : ObjectState;
+    getCurrentState() : ObjectState;
+    applyLoopLogic() : void;
+}
+
+export class InputState{
+  private state: {};
+}
+
+export class ObjectState{
+  private state: {};
+}
+
+export class MMOGEngine{
+
+  constructor(){
+
+  }
+
+  startServerListener(){
+
+  }
+
+  registerObject(object:ISimulatedObject) : void{
+
+  }
+
+  registerAsClientControlled(object:IClientControlled) : void{
+
+  }
+
+}
+
+export class MMOGServerListener{
+
+  constructor(port: number = 3000){
+    var WebSocketServer = WebSocket.Server;
+    var server = new WebSocketServer({ port: port });
+
+    server.on('connection', ws => {
+
+      this.registerListenersOnNewSocket(ws);
+
+    });
+
+  }
+
+  registerListenersOnNewSocket(ws: WebSocket){
+
+    ws.on('message', message => {
+
+    });
+
+  }
+
+}
+
+export class TestObject implements ISimulatedObject{
+
+  updateFromState(state : ObjectState) : void {
+
+  }
+
+  interpolateStates(state1 : ObjectState, state2 : ObjectState, delta : number) : ObjectState {
+    var obj = new ObjectState;
+    return obj;
+  }
+
+  getCurrentState() : ObjectState {
+    var obj = new ObjectState;
+    return obj;
+  }
+
+  applyLoopLogic() : void{
+
+  }
+
 }
